@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cổng Học Liệu Số STEM Toán 12 — Mô Hình Rồng Đà Nẵng | Nhóm 1 – Lớp 12A2</title>
+  <meta name="description" content="Cổng học liệu số dự án STEM Toán học 12 (CT GDPT 2018): Mô hình Cầu Rồng Đà Nẵng — Ứng dụng Hàm số bậc hai và Đạo hàm Max–Min trong đời sống." />
+
+  <!-- Tailwind CSS qua CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Be Vietnam Pro cho tiếng Việt sắc nét & JetBrains Mono cho công thức -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            navy: '#0F172A',
+            panel: '#1E293B',
+            amberGold: '#F59E0B',
+            dragonFire: '#EA580C',
+            hanRiver: '#0EA5E9',
+            verifyGreen: '#10B981',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Tùy chỉnh thanh trượt chấm điểm Rubric cho dễ kéo trên cả điện thoại và máy tính */
+    input[type="range"].rubric-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 9999px;
+      background: #334155;
+      outline: none;
+    }
+    input[type="range"].rubric-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 9999px;
+      background: #F59E0B;
+      border: 3px solid #0F172A;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.65);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    input[type="range"].rubric-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+    input[type="range"].rubric-slider::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 9999px;
+      background: #F59E0B;
+      border: 3px solid #0F172A;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.65);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="bg-[#0F172A] text-slate-100 font-sans antialiased selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden">
+
+  <!-- =========================================================================
+       THANH ĐIỀU HƯỚNG CỐ ĐỊNH (STICKY NAVBAR)
+       ========================================================================= -->
+  <header class="sticky top-0 z-50 bg-[#0F172A]/90 backdrop-blur-md border-b border-slate-700/70 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-18">
+        <!-- Logo & Tên dự án -->
+        <a href="#trang-chu" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-600/25 shrink-0">
+            <svg class="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 17c3-10 7-10 9 0 2-10 6-10 9 0M2 19h20" />
+            </svg>
+          </div>
+          <div class="leading-tight">
+            <div class="text-sm sm:text-base font-extrabold text-white tracking-tight group-hover:text-amber-300 transition-colors">
+              STEM TOÁN 12 • 12A2
+            </div>
+            <div class="text-[11px] sm:text-xs font-medium text-sky-400">
+              Mô hình Cầu Rồng Đà Nẵng
+            </div>
+          </div>
+        </a>
+
+        <!-- Menu Desktop -->
+        <nav class="hidden lg:flex items-center gap-1.5" aria-label="Điều hướng chính">
+          <a href="#trang-chu" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:text-amber-300 hover:bg-slate-800/80 transition-colors">Trang chủ</a>
+          <a href="#kho-hoc-lieu" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:text-amber-300 hover:bg-slate-800/80 transition-colors">Kho Học liệu Drive</a>
+          <a href="#nhom-12a2" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:text-amber-300 hover:bg-slate-800/80 transition-colors">Nhóm 12A2</a>
+          <a href="#khoa-hoc-so-lieu" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:text-amber-300 hover:bg-slate-800/80 transition-colors">Khoa học &amp; Số liệu</a>
+          <a href="#rubric-100" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-200 hover:text-amber-300 hover:bg-slate-800/80 transition-colors">Rubric 100đ</a>
+          <a href="#kho-hoc-lieu" data-drive-key="mainFolder"
+             class="ml-2 px-4 py-2 rounded-xl text-sm font-extrabold bg-gradient-to-r from-amber-500 to-orange-600 text-slate-950 hover:from-amber-400 hover:to-orange-500 shadow-md shadow-orange-600/25 transition-all">
+            Mở Drive
+          </a>
+        </nav>
+
+        <!-- Nút mở menu trên điện thoại -->
+        <button id="btn-mobile-menu" type="button" aria-label="Mở trình đơn"
+          class="lg:hidden p-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 hover:text-amber-300">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Menu Mobile xổ xuống -->
+      <div id="mobile-menu" class="hidden lg:hidden pb-4 pt-2 border-t border-slate-800 space-y-1">
+        <a href="#trang-chu" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-amber-300">Trang chủ</a>
+        <a href="#kho-hoc-lieu" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-amber-300">Kho Học liệu Drive</a>
+        <a href="#nhom-12a2" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-amber-300">Nhóm 12A2</a>
+        <a href="#khoa-hoc-so-lieu" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-amber-300">Khoa học &amp; Số liệu</a>
+        <a href="#rubric-100" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-amber-300">Rubric 100đ</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       THÔNG BÁO TOAST KHI CHƯA GẮN LINK GOOGLE DRIVE THẬT (KHÔNG DÙNG ALERT)
+       ========================================================================= -->
+  <div id="toast-container" class="fixed bottom-5 right-4 left-4 sm:left-auto sm:w-[430px] z-[100] pointer-events-none transition-all duration-300 opacity-0 translate-y-4">
+    <div id="toast-box" class="pointer-events-auto bg-slate-900/95 border border-amber-400/70 rounded-2xl p-4 shadow-2xl shadow-black/60 backdrop-blur-md flex items-start gap-3">
+      <div class="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-400 shrink-0 mt-0.5">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div class="flex-1 space-y-1">
+        <div id="toast-title" class="text-sm font-extrabold text-amber-300">Chưa gắn đường link Google Drive thật</div>
+        <p id="toast-msg" class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+          Hãy mở tệp <code class="font-mono text-sky-300 bg-slate-800 px-1.5 py-0.5 rounded">index.html</code> và dán link thư mục Google Drive của nhóm vào khối <code class="font-mono text-amber-300 bg-slate-800 px-1.5 py-0.5 rounded">DRIVE_CONFIG</code> ngay đầu thẻ &lt;script&gt;.
+        </p>
+      </div>
+      <button id="btn-close-toast" type="button" aria-label="Đóng thông báo" class="text-slate-400 hover:text-white p-1">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- =======================================================================
+         PHẦN 1: HERO SECTION
+         ======================================================================= -->
+    <section id="trang-chu" class="relative overflow-hidden pt-10 pb-14 sm:pt-16 sm:pb-20 border-b border-slate-800">
+      <!-- Hiệu ứng ánh sáng nền Cầu Rồng -->
+      <div class="pointer-events-none absolute -top-24 -left-24 w-96 h-96 rounded-full bg-amber-500/15 blur-3xl"></div>
+      <div class="pointer-events-none absolute top-20 -right-24 w-96 h-96 rounded-full bg-sky-500/15 blur-3xl"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+          <!-- Nhãn dự án -->
+          <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full bg-amber-500/15 border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-extrabold tracking-wide uppercase">
+            <span>DỰ ÁN STEM TOÁN HỌC 12 • CHƯƠNG TRÌNH GDPT 2018 • NHÓM 1 – LỚP 12A2</span>
+          </div>
+
+          <!-- Tiêu đề lớn -->
+          <h1 class="text-3xl sm:text-5xl lg:text-[54px] font-black text-white tracking-tight leading-[1.15]">
+            MÔ HÌNH <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-300">RỒNG ĐÀ NẴNG</span>
+            <span class="block mt-2 text-2xl sm:text-4xl lg:text-[40px] font-extrabold text-sky-300">
+              ỨNG DỤNG HÀM SỐ BẬC HAI &amp; ĐẠO HÀM MAX–MIN
+            </span>
+          </h1>
+
+          <!-- Mô tả ngắn gọn -->
+          <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            Cổng học liệu số mở phục vụ trình chiếu và đánh giá Hội thi STEM Toán học 12 — kết nối trực quan giữa kiến trúc biểu tượng Cầu Rồng Đà Nẵng, bộ số liệu thực nghiệm chuẩn xác và bài toán ứng dụng Đạo hàm ngoài đời thực.
+          </p>
+
+          <!-- Cụm nút CTA lớn -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+            <a href="#kho-hoc-lieu" data-drive-key="mainFolder"
+               class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-slate-950 font-extrabold text-base sm:text-lg shadow-xl shadow-orange-600/30 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2.5">
+              <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+              </svg>
+              <span>Mở Toàn Bộ Kho Học Liệu (Google Drive)</span>
+            </a>
+            <a href="#khoa-hoc-so-lieu"
+               class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold text-base transition-colors flex items-center justify-center gap-2">
+              <span>Xem Số liệu &amp; Đồ thị Toán 12</span>
+              <svg class="w-5 h-5 text-sky-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4 Thẻ chỉ số nổi bật -->
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          <!-- Thẻ 1 -->
+          <div class="bg-[#1E293B]/90 border border-emerald-500/40 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+            <div class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">Kiểm chứng thực nghiệm</div>
+            <div class="text-3xl sm:text-4xl font-black text-white font-mono">99,88%</div>
+            <div class="mt-2 text-sm text-slate-300 font-medium">
+              Độ khớp mô hình thật • Sai số chỉ <strong class="text-emerald-300">0,2 mm</strong> (0,12%)
+            </div>
+          </div>
+
+          <!-- Thẻ 2 -->
+          <div class="bg-[#1E293B]/90 border border-amber-500/40 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+            <div class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1">Khung thông xe tối ưu</div>
+            <div class="text-2xl sm:text-3xl font-black text-white font-mono leading-tight pt-1">
+              S<sub>max</sub> ≈ 325,63 cm²
+            </div>
+            <div class="mt-2 text-sm text-slate-300 font-medium">
+              Kích thước vàng <strong class="text-amber-300">27,14 × 12 cm</strong> dưới Vòm 1
+            </div>
+          </div>
+
+          <!-- Thẻ 3 -->
+          <div class="bg-[#1E293B]/90 border border-sky-500/40 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+            <div class="text-xs font-bold uppercase tracking-wider text-sky-400 mb-1">Bài toán phun nước</div>
+            <div class="text-2xl sm:text-3xl font-black text-white font-mono leading-tight pt-1">
+              y<sub>max</sub> ≈ 11,2 m
+            </div>
+            <div class="mt-2 text-sm text-slate-300 font-medium">
+              Tiếp tuyến chung <strong class="text-sky-300">k = 2,25</strong> tại miệng rồng
+            </div>
+          </div>
+
+          <!-- Thẻ 4 -->
+          <div class="bg-[#1E293B]/90 border border-orange-500/40 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+            <div class="text-xs font-bold uppercase tracking-wider text-orange-400 mb-1">Lộ trình khả thi</div>
+            <div class="text-3xl sm:text-4xl font-black text-white font-mono">02 Tiết</div>
+            <div class="mt-2 text-sm text-slate-300 font-medium">
+              Vật liệu tái chế giá rẻ • Đạt chuẩn <strong class="text-orange-300">CV 5512</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         PHẦN 2: KHO HỌC LIỆU SỐ GOOGLE DRIVE
+         ======================================================================= -->
+    <section id="kho-hoc-lieu" class="py-14 sm:py-20 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+          <div class="space-y-2">
+            <span class="inline-block px-3 py-1 rounded-lg bg-sky-500/15 border border-sky-400/35 text-sky-300 text-xs font-extrabold uppercase tracking-wider">
+              Tiêu chí 4 • Học liệu số mở chia sẻ rộng rãi
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
+              Kho Học Liệu Số Google Drive
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-2xl">
+              Ban Giám khảo và thầy cô bấm trực tiếp vào từng thẻ bên dưới để xem hoặc tải về đầy đủ bộ học liệu STEM Toán học 12 của Nhóm 1 – Lớp 12A2.
+            </p>
+          </div>
+          <!-- Trạng thái kết nối Drive -->
+          <div id="drive-status-badge" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 border border-slate-700 text-xs sm:text-sm font-semibold text-slate-300 shrink-0">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+            <span>Đang kiểm tra cấu hình Drive...</span>
+          </div>
+        </div>
+
+        <!-- 4 Thẻ học liệu nổi bật -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Thẻ Học liệu 1: Bộ Video Bài giảng STEM -->
+          <article class="bg-[#1E293B] border border-amber-500/35 rounded-2xl p-6 shadow-xl flex flex-col justify-between gap-5 hover:border-amber-400/70 transition-colors">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-400/40 flex items-center justify-center text-amber-400 shrink-0">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-400/35 text-xs font-mono font-bold">
+                  MP4 • Full HD 1080p
+                </span>
+              </div>
+              <div>
+                <h3 class="text-xl font-extrabold text-white">
+                  1. Bộ Video Bài giảng STEM (Phần 1 &amp; Phần 2)
+                </h3>
+                <p class="mt-2 text-sm sm:text-base text-slate-300 leading-relaxed">
+                  <strong>Phần 1:</strong> Tổng quan biểu tượng Cầu Rồng, quy trình chế tác thủ công và giới thiệu hàm bậc hai. <strong>Phần 2:</strong> Giải mã lý do chọn Parabol, bộ số liệu đo thật, bài toán Đạo hàm Max–Min và mở rộng Cầu Rồng phun nước.
+                </p>
+              </div>
+            </div>
+            <!-- 2 nút nhanh cho Video Phần 1 và Video Phần 2 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-700/70">
+              <a href="#kho-hoc-lieu" data-drive-key="videoPart1"
+                 class="px-4 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm text-center transition-colors flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <span>Mở Video Phần 1</span>
+              </a>
+              <a href="#kho-hoc-lieu" data-drive-key="videoPart2"
+                 class="px-4 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-extrabold text-sm text-center transition-colors flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <span>Mở Video Phần 2</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Thẻ Học liệu 2: Mô phỏng Tương tác HTML & File GeoGebra -->
+          <article class="bg-[#1E293B] border border-sky-500/35 rounded-2xl p-6 shadow-xl flex flex-col justify-between gap-5 hover:border-sky-400/70 transition-colors">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="w-14 h-14 rounded-2xl bg-sky-500/15 border border-sky-400/40 flex items-center justify-center text-sky-400 shrink-0">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-sky-500/15 text-sky-300 border border-sky-400/35 text-xs font-mono font-bold">
+                  HTML5 &amp; GeoGebra (.ggb)
+                </span>
+              </div>
+              <div>
+                <h3 class="text-xl font-extrabold text-white">
+                  2. Mô phỏng Tương tác HTML &amp; File GeoGebra
+                </h3>
+                <p class="mt-2 text-sm sm:text-base text-slate-300 leading-relaxed">
+                  Công cụ trực quan hóa các nhịp Parabol tách khoảng d<sub>1</sub>, điều chỉnh góc ngẩng phun lửa Hướng A và tệp GeoGebra đối chiếu trực tiếp đồ thị hàm số bậc hai đè lên mô hình thật.
+                </p>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-slate-700/70">
+              <a href="#kho-hoc-lieu" data-drive-key="interactiveSim"
+                 class="w-full px-5 py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-extrabold text-sm text-center transition-colors flex items-center justify-center gap-2">
+                <span>Mở trên Google Drive</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Thẻ Học liệu 3: Phiếu học tập số -->
+          <article class="bg-[#1E293B] border border-orange-500/35 rounded-2xl p-6 shadow-xl flex flex-col justify-between gap-5 hover:border-orange-400/70 transition-colors">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="w-14 h-14 rounded-2xl bg-orange-500/15 border border-orange-400/40 flex items-center justify-center text-orange-400 shrink-0">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-orange-500/15 text-orange-300 border border-orange-400/35 text-xs font-mono font-bold">
+                  Microsoft Word (.docx)
+                </span>
+              </div>
+              <div>
+                <h3 class="text-xl font-extrabold text-white">
+                  3. Phiếu học tập số: Bài toán Cầu Rồng Phun nước
+                </h3>
+                <p class="mt-2 text-sm sm:text-base text-slate-300 leading-relaxed">
+                  Tài liệu dùng cho Hoạt động 4 (Thảo luận, phản biện &amp; Mở rộng) gồm đầy đủ 3 phần câu hỏi định hướng từ tiếp tuyến chung đến tìm độ cao cực đại, kèm Phụ lục Đáp án giải chi tiết.
+                </p>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-slate-700/70">
+              <a href="#kho-hoc-lieu" data-drive-key="worksheetDocx"
+                 class="w-full px-5 py-3 rounded-xl bg-slate-700 hover:bg-orange-500 hover:text-slate-950 text-white font-extrabold text-sm text-center transition-colors flex items-center justify-center gap-2 border border-orange-500/40">
+                <span>Mở trên Google Drive</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Thẻ Học liệu 4: Giáo án 02 Tiết & Bảng Rubric -->
+          <article class="bg-[#1E293B] border border-emerald-500/35 rounded-2xl p-6 shadow-xl flex flex-col justify-between gap-5 hover:border-emerald-400/70 transition-colors">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-3">
+                <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-400/40 flex items-center justify-center text-emerald-400 shrink-0">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  </svg>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/35 text-xs font-mono font-bold">
+                  CV 5512 &amp; Rubric (.docx)
+                </span>
+              </div>
+              <div>
+                <h3 class="text-xl font-extrabold text-white">
+                  4. Giáo án 02 Tiết (CV 5512) &amp; Bảng Rubric 100 Điểm
+                </h3>
+                <p class="mt-2 text-sm sm:text-base text-slate-300 leading-relaxed">
+                  Kế hoạch bài dạy chi tiết phân tách rõ kiến thức nền và kiến thức hình thành theo CT GDPT 2018, 5 bước tiến trình STEM, tích hợp liên môn STEAM và hệ thống tiêu chí chấm thi minh bạch.
+                </p>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-slate-700/70">
+              <a href="#kho-hoc-lieu" data-drive-key="lessonPlanRubricDocx"
+                 class="w-full px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm text-center transition-colors flex items-center justify-center gap-2">
+                <span>Mở trên Google Drive</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         PHẦN 3: GIỚI THIỆU NHÓM 1 – LỚP 12A2 (RENDER ĐỘNG TỪ TEAM_MEMBERS)
+         ======================================================================= -->
+    <section id="nhom-12a2" class="py-14 sm:py-20 border-b border-slate-800 bg-slate-900/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8">
+          <div class="space-y-2">
+            <span class="inline-block px-3 py-1 rounded-lg bg-amber-500/15 border border-amber-400/35 text-amber-300 text-xs font-extrabold uppercase tracking-wider">
+              Đội ngũ thực hiện dự án
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
+              Nhóm 1 – Lớp 12A2 (11 Thành viên)
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-2xl">
+              Phân công nhiệm vụ rõ ràng theo 4 nhóm chuyên môn từ thiết kế kết cấu, khảo sát Toán 12, dựng học liệu số đến báo cáo phản biện.
+            </p>
+          </div>
+
+          <!-- Bộ lọc nhanh theo vai trò -->
+          <div id="role-filters" class="flex flex-wrap gap-2">
+            <!-- Render bằng JS -->
+          </div>
+        </div>
+
+        <!-- Lưới thành viên -->
+        <div id="team-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <!-- Render động từ mảng TEAM_MEMBERS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         PHẦN 4: CƠ SỞ KHOA HỌC & BỘ SỐ LIỆU THỰC NGHIỆM (4 TAB TƯƠNG TÁC)
+         ======================================================================= -->
+    <section id="khoa-hoc-so-lieu" class="py-14 sm:py-20 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="space-y-2 mb-8">
+          <span class="inline-block px-3 py-1 rounded-lg bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 text-xs font-extrabold uppercase tracking-wider">
+            Tiêu chí 1 &amp; 2 • Chính xác học thuật Toán 12 &amp; Tiến trình STEM
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
+            Cơ sở Khoa học &amp; Bộ Số liệu Thực nghiệm
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base max-w-3xl">
+            Chuyển đổi giữa 4 thẻ nội dung dưới đây để xem chi tiết lý do chọn kết cấu Parabol, bộ số liệu đo thật đặt gốc O tại đầu rồng, bài toán mở rộng Cầu Rồng phun nước và tiến trình STEM 5 bước.
+          </p>
+        </div>
+
+        <!-- Thanh 4 Tab -->
+        <div role="tablist" aria-label="Các phần khoa học và số liệu" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 mb-6">
+          <button type="button" role="tab" data-tab="tab-parabol" aria-selected="true"
+            class="sci-tab-btn px-4 py-3.5 rounded-2xl text-left font-bold text-sm transition-all border bg-gradient-to-r from-amber-500 to-orange-600 text-slate-950 border-amber-400 shadow-lg shadow-orange-600/20">
+            <span class="block text-[11px] uppercase opacity-80 font-extrabold">Tab 1</span>
+            <span>Tại sao chọn Cầu Parabol?</span>
+          </button>
+          <button type="button" role="tab" data-tab="tab-vom1" aria-selected="false"
+            class="sci-tab-btn px-4 py-3.5 rounded-2xl text-left font-bold text-sm transition-all border bg-[#1E293B] text-slate-200 border-slate-700 hover:border-amber-400/50 hover:text-white">
+            <span class="block text-[11px] uppercase text-sky-400 font-extrabold">Tab 2</span>
+            <span>Số liệu Vòm 1 &amp; Max–Min (cm)</span>
+          </button>
+          <button type="button" role="tab" data-tab="tab-phunnuoc" aria-selected="false"
+            class="sci-tab-btn px-4 py-3.5 rounded-2xl text-left font-bold text-sm transition-all border bg-[#1E293B] text-slate-200 border-slate-700 hover:border-amber-400/50 hover:text-white">
+            <span class="block text-[11px] uppercase text-orange-400 font-extrabold">Tab 3</span>
+            <span>Bài toán Phun nước (m)</span>
+          </button>
+          <button type="button" role="tab" data-tab="tab-stem" aria-selected="false"
+            class="sci-tab-btn px-4 py-3.5 rounded-2xl text-left font-bold text-sm transition-all border bg-[#1E293B] text-slate-200 border-slate-700 hover:border-amber-400/50 hover:text-white">
+            <span class="block text-[11px] uppercase text-emerald-400 font-extrabold">Tab 4</span>
+            <span>STEM 5 bước, STEAM &amp; 02 Tiết</span>
+          </button>
+        </div>
+
+        <!-- Khung nội dung Tab -->
+        <div class="bg-[#1E293B] border border-slate-700/80 rounded-3xl p-5 sm:p-8 shadow-2xl">
+
+          <!-- ================= TAB 1: TẠI SAO CHỌN CẦU VÒM PARABOL? ================= -->
+          <div id="tab-parabol" class="sci-tab-panel space-y-8">
+            <div>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-amber-400 mb-4">
+                1. So sánh cơ học: Vì sao chọn Cầu vòm Parabol thay cho các loại cầu khác?
+              </h3>
+              <div class="overflow-x-auto rounded-2xl border border-slate-700">
+                <table class="w-full text-left border-collapse text-sm sm:text-base">
+                  <thead>
+                    <tr class="bg-slate-900/90 text-slate-200 border-b border-slate-700">
+                      <th class="py-3.5 px-4 font-extrabold">Loại kết cấu cầu</th>
+                      <th class="py-3.5 px-4 font-extrabold">Cơ chế chịu lực dưới tải mặt cầu</th>
+                      <th class="py-3.5 px-4 font-extrabold">Hạn chế / Ưu thế nổi bật</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-700/70">
+                    <tr class="bg-slate-800/40">
+                      <td class="py-4 px-4 font-bold text-rose-300">Cầu dầm ngang (thẳng)</td>
+                      <td class="py-4 px-4 text-slate-300">Chịu <strong>mô-men uốn rất lớn</strong> ở giữa nhịp, dầm dễ bị võng khi vượt sông rộng.</td>
+                      <td class="py-4 px-4 text-slate-300">Phải đóng nhiều trụ dày dưới lòng sông → cản trở giao thông thủy, tốn chi phí móng trụ.</td>
+                    </tr>
+                    <tr class="bg-slate-800/40">
+                      <td class="py-4 px-4 font-bold text-sky-300">Cầu vòm cung tròn</td>
+                      <td class="py-4 px-4 text-slate-300">Lệch khỏi đường truyền lực nén tự nhiên khi tải trọng phân bố đều theo phương ngang.</td>
+                      <td class="py-4 px-4 text-slate-300">Vẫn phát sinh <strong>lực uốn phụ</strong> trong thân vòm, chưa tối ưu hiệu suất vật liệu.</td>
+                    </tr>
+                    <tr class="bg-slate-800/40">
+                      <td class="py-4 px-4 font-bold text-purple-300">Cầu dây văng / dây võng</td>
+                      <td class="py-4 px-4 text-slate-300">Truyền tải qua hệ cáp kéo neo lên tháp trụ cao và mố neo khổng lồ.</td>
+                      <td class="py-4 px-4 text-slate-300">Thi công tháp cáp phức tạp, chi phí lớn; không phù hợp tạo hình dáng rồng uốn lượn.</td>
+                    </tr>
+                    <tr class="bg-amber-500/10">
+                      <td class="py-4 px-4 font-extrabold text-amber-300">Cầu vòm Parabol ★</td>
+                      <td class="py-4 px-4 text-white">Chuyển tải trọng đứng thành <strong>lực nén thuần túy</strong> chạy dọc đúng đường cong Parabol xuống 2 mố trụ.</td>
+                      <td class="py-4 px-4 text-emerald-300 font-semibold">Triệt tiêu lực uốn phụ, vượt nhịp rộng ít trụ, kiểm soát chính xác bằng Đạo hàm &amp; tôn trọn dáng Rồng Đà Nẵng.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 2 Vai trò của Đạo hàm -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div class="bg-slate-900/75 border border-sky-500/40 rounded-2xl p-5 space-y-2">
+                <div class="text-xs font-extrabold uppercase tracking-wider text-sky-400">Vai trò Đạo hàm 1</div>
+                <h4 class="text-lg font-extrabold text-white">Giải y' = 0 để chốt “tầm thoáng giao thông”</h4>
+                <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                  Xe tải, xe buýt và tàu thuyền cần khoảng không đủ cao để lưu thông an toàn. Thay vì đo thử thủ công hàng chục điểm dọc theo vòm cầu, chỉ cần giải <strong class="font-mono text-amber-300">y' = 0</strong> để xác định tức thì vị trí đỉnh và chiều cao cực đại <strong class="font-mono text-sky-300">y<sub>max</sub></strong>.
+                </p>
+              </div>
+              <div class="bg-slate-900/75 border border-amber-500/40 rounded-2xl p-5 space-y-2">
+                <div class="text-xs font-extrabold uppercase tracking-wider text-amber-400">Vai trò Đạo hàm 2</div>
+                <h4 class="text-lg font-extrabold text-white">Bài toán Max–Min tìm “điểm vàng” vật liệu &amp; chịu lực</h4>
+                <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                  Nếu vòm uốn quá cao sẽ tốn nhiều thép (hoặc tốn ống nhựa gân mềm trên mô hình) và mất cân đối; ngược lại quá thấp sẽ không đủ tầm thoáng và mất dáng rồng uy nghi. Tư duy cực trị <strong class="text-amber-300">Max–Min</strong> tìm ra tỷ lệ tối ưu nhất về độ bền, thẩm mỹ và chi phí.
+                </p>
+              </div>
+            </div>
+
+            <!-- Ứng dụng thực tiễn -->
+            <div class="bg-slate-900/60 border border-slate-700 rounded-2xl p-5">
+              <h4 class="text-lg font-extrabold text-emerald-400 mb-3">Ứng dụng rộng rãi của Parabol &amp; Đạo hàm trong đời sống</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-slate-300">
+                <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80">
+                  <div class="font-bold text-amber-300 mb-1">Kiến trúc &amp; Giao thông</div>
+                  Cầu Rồng (Đà Nẵng), Cầu Đông Trù (Hà Nội), Cầu cảng Sydney (Úc), mái vòm sân vận động và nhà ga không cần cột chống giữa.
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80">
+                  <div class="font-bold text-sky-300 mb-1">Tính chất hội tụ tiêu điểm</div>
+                  Chảo ăng-ten thu sóng vệ tinh, gương cầu parabol thu năng lượng mặt trời và chóa đèn pha chiếu sáng xa.
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80">
+                  <div class="font-bold text-emerald-300 mb-1">Kỹ thuật &amp; Kinh tế (Max–Min)</div>
+                  Tối ưu hình dáng bao bì tốn ít nguyên liệu nhất, cực tiểu hóa chi phí sản xuất và tối đa hóa diện tích sử dụng.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= TAB 2: SỐ LIỆU THẬT VÒM 1 & MAX–MIN ================= -->
+          <div id="tab-vom1" class="sci-tab-panel hidden space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+              <!-- Biểu đồ SVG chính xác toán học cho Vòm 1 -->
+              <div class="lg:col-span-7 bg-[#0B1221] border border-slate-700 rounded-2xl p-4 space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <h3 class="text-base sm:text-lg font-extrabold text-amber-400">
+                    Đồ thị Parabol Vòm 1 &amp; Khung thông xe tối ưu (đơn vị: cm)
+                  </h3>
+                  <span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-slate-800 text-sky-300 border border-slate-700">
+                    Gốc O(0; 0) tại chân Đầu rồng
+                  </span>
+                </div>
+
+                <svg viewBox="0 0 680 340" class="w-full h-auto rounded-xl bg-[#090F1D]" role="img" aria-label="Đồ thị Parabol Vòm 1, điểm kiểm chứng A(19,5; 17,5), đỉnh B(23,5; 18) và khung hình chữ nhật tối ưu 27,14 x 12 cm">
+                  <!-- Lưới nền nhẹ -->
+                  <g stroke="#1E293B" stroke-width="1">
+                    <line x1="60" y1="60" x2="645" y2="60" />
+                    <line x1="60" y1="135" x2="645" y2="135" />
+                    <line x1="60" y1="210" x2="645" y2="210" />
+                    <line x1="174.2" y1="30" x2="174.2" y2="285" />
+                    <line x1="330.25" y1="30" x2="330.25" y2="285" />
+                    <line x1="486.3" y1="30" x2="486.3" y2="285" />
+                    <line x1="600.5" y1="30" x2="600.5" y2="285" />
+                  </g>
+
+                  <!-- Trục Ox & Oy -->
+                  <g stroke="#38BDF8" stroke-width="2">
+                    <line x1="32" y1="285" x2="656" y2="285" />
+                    <polygon points="662,285 652,280 652,290" fill="#38BDF8" stroke="none" />
+                    <line x1="60" y1="312" x2="60" y2="24" />
+                    <polygon points="60,18 55,28 65,28" fill="#38BDF8" stroke="none" />
+                  </g>
+                  <text x="656" y="304" fill="#38BDF8" font-size="12" font-weight="700" text-anchor="end">x (cm)</text>
+                  <text x="68" y="26" fill="#38BDF8" font-size="12" font-weight="700">y (cm)</text>
+
+                  <!-- Khung thông xe hình chữ nhật tối ưu 27,14 x 12 cm -->
+                  <rect x="174.2" y="135" width="312.1" height="150" fill="rgba(16, 185, 129, 0.2)" stroke="#10B981" stroke-width="2.2" rx="3" />
+                  <text x="330.25" y="198" fill="#6EE7B7" font-size="13.5" font-weight="800" text-anchor="middle">KHUNG THÔNG XE TỐI ƯU</text>
+                  <text x="330.25" y="218" fill="#A7F3D0" font-size="12.5" font-weight="700" text-anchor="middle">Rộng 27,14 cm × Cao 12 cm</text>
+                  <text x="330.25" y="238" fill="#34D399" font-size="12.5" font-weight="800" text-anchor="middle">Smax = 188√3 ≈ 325,63 cm²</text>
+
+                  <!-- Đường cong Parabol Vòm 1 chính xác: M(60,285) Q(330.25,-165) (600.5,285) -->
+                  <path d="M 60 285 Q 330.25 -165 600.5 285" fill="none" stroke="rgba(245, 158, 11, 0.25)" stroke-width="11" stroke-linecap="round" />
+                  <path d="M 60 285 Q 330.25 -165 600.5 285" fill="none" stroke="#F59E0B" stroke-width="4" stroke-linecap="round" />
+
+                  <!-- Đoạn khoảng trống d1 minh họa sang Vòm 2 -->
+                  <line x1="600.5" y1="285" x2="646" y2="285" stroke="#10B981" stroke-width="4" stroke-dasharray="6,4" />
+                  <text x="625" y="274" fill="#34D399" font-size="11" font-weight="700" text-anchor="middle">d₁ → Vòm 2</text>
+
+                  <!-- Đường gióng đỉnh B & điểm A -->
+                  <line x1="330.25" y1="60" x2="330.25" y2="285" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.7" />
+                  <line x1="60" y1="60" x2="330.25" y2="60" stroke="#F59E0B" stroke-width="1.4" stroke-dasharray="5,4" opacity="0.6" />
+                  <line x1="284.25" y1="66.25" x2="284.25" y2="285" stroke="#38BDF8" stroke-width="1.3" stroke-dasharray="4,4" opacity="0.6" />
+
+                  <!-- Các điểm mốc quan trọng -->
+                  <circle cx="60" cy="285" r="5" fill="#0EA5E9" stroke="#FFFFFF" stroke-width="2" />
+                  <circle cx="600.5" cy="285" r="5" fill="#F59E0B" stroke="#FFFFFF" stroke-width="2" />
+                  <circle cx="330.25" cy="60" r="6" fill="#F59E0B" stroke="#FFFFFF" stroke-width="2.2" />
+                  <circle cx="284.25" cy="66.25" r="5.2" fill="#38BDF8" stroke="#FFFFFF" stroke-width="2" />
+
+                  <!-- Nhãn tọa độ rõ nét -->
+                  <rect x="338" y="34" width="134" height="24" rx="6" fill="#0F172A" stroke="#F59E0B" stroke-width="1.3" />
+                  <text x="405" y="50" fill="#FDE68A" font-size="11.5" font-weight="800" text-anchor="middle">Đỉnh B(23,5; 18)</text>
+
+                  <rect x="122" y="42" width="154" height="24" rx="6" fill="#0F172A" stroke="#38BDF8" stroke-width="1.3" />
+                  <text x="199" y="58" fill="#BAE6FD" font-size="11" font-weight="700" text-anchor="middle">Kiểm chứng A(19,5; 17,5)</text>
+
+                  <!-- Nhãn trục số -->
+                  <text x="52" y="305" fill="#E0F2FE" font-size="11.5" font-weight="700" text-anchor="end">O(0; 0)</text>
+                  <text x="51" y="64" fill="#FDE68A" font-size="11.5" font-weight="700" text-anchor="end">18</text>
+                  <text x="51" y="139" fill="#6EE7B7" font-size="11.5" font-weight="700" text-anchor="end">12</text>
+                  <text x="284.25" y="305" fill="#7DD3FC" font-size="11" font-weight="700" text-anchor="middle">19,5</text>
+                  <text x="330.25" y="305" fill="#FDE68A" font-size="11.5" font-weight="800" text-anchor="middle">23,5</text>
+                  <text x="600.5" y="305" fill="#FDE68A" font-size="11.5" font-weight="700" text-anchor="middle">(47; 0)</text>
+                  <text x="330.25" y="328" fill="#94A3B8" font-size="11.5" font-weight="600" text-anchor="middle">Độ rộng nhịp L₁ = 47 cm • Chiều cao đỉnh H₁ = 18 cm</text>
+                </svg>
+
+                <!-- Ghi chú cấu trúc nhiều nhịp tách khoảng (KHÔNG bịa số đo Vòm 2) -->
+                <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-3.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <strong class="text-emerald-400">Cấu trúc nhiều nhịp tách khoảng:</strong> Trên mô hình thật, các nhịp thân rồng không dính liền mà cách nhau khoảng trống <strong class="font-mono text-emerald-300">d<sub>1</sub></strong> trên mặt cầu (<span class="font-mono">y = 0</span> trên <span class="font-mono">(47; 47 + d<sub>1</sub>)</span>). Nhịp Vòm 2 tiếp nối theo phương trình tổng quát:
+                  <span class="font-mono text-amber-300 font-bold ml-1">
+                    y<sub>2</sub> = −
+                    <span class="inline-flex flex-col items-center align-middle mx-0.5 leading-none text-xs">
+                      <span class="border-b border-amber-300/80 px-1 pb-0.5">4H<sub>2</sub></span>
+                      <span class="px-1 pt-0.5">L<sub>2</sub>²</span>
+                    </span>(x − x<sub>I₂</sub>)² + H<sub>2</sub>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Cột công thức chi tiết & Bảng biến thiên -->
+              <div class="lg:col-span-5 space-y-4">
+                <!-- Khối 1: Phương trình & Đạo hàm -->
+                <div class="bg-slate-900/80 border border-amber-500/40 rounded-2xl p-4 space-y-3">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-amber-400">1. Phương trình Parabol &amp; Đạo hàm Vòm 1</div>
+                  <div class="text-sm sm:text-base font-mono font-bold text-white bg-slate-950/80 border border-slate-700 rounded-xl p-3 overflow-x-auto">
+                    y<sub>1</sub> = −
+                    <span class="inline-flex flex-col items-center align-middle mx-1 leading-none text-xs sm:text-sm">
+                      <span class="border-b border-white px-1 pb-0.5">72</span>
+                      <span class="px-1 pt-0.5">2209</span>
+                    </span>x² +
+                    <span class="inline-flex flex-col items-center align-middle mx-1 leading-none text-xs sm:text-sm">
+                      <span class="border-b border-white px-1 pb-0.5">72</span>
+                      <span class="px-1 pt-0.5">47</span>
+                    </span>x ≈ −0,0326x² + 1,5319x
+                  </div>
+                  <div class="text-xs sm:text-sm font-mono text-sky-300">
+                    y<sub>1</sub>' = −
+                    <span class="inline-flex flex-col items-center align-middle mx-0.5 leading-none text-xs">
+                      <span class="border-b border-sky-300 px-1 pb-0.5">144</span>
+                      <span class="px-1 pt-0.5">2209</span>
+                    </span>x +
+                    <span class="inline-flex flex-col items-center align-middle mx-0.5 leading-none text-xs">
+                      <span class="border-b border-sky-300 px-1 pb-0.5">72</span>
+                      <span class="px-1 pt-0.5">47</span>
+                    </span> = 0 ⇔ x = 23,5 cm
+                  </div>
+                  <div class="text-xs sm:text-sm text-slate-300">
+                    Đồng biến trên <span class="font-mono text-sky-300">(0; 23,5)</span>, nghịch biến trên <span class="font-mono text-orange-300">(23,5; 47)</span> ⇒ <strong class="text-amber-300">y<sub>max</sub> = 18 cm</strong> tại đỉnh B(23,5; 18); <strong class="text-slate-200">y<sub>min</sub> = 0 cm</strong> tại O(0; 0) và (47; 0).
+                  </div>
+                </div>
+
+                <!-- Khối 2: Kiểm chứng sai số tại A(19,5; 17,5) -->
+                <div class="bg-emerald-950/40 border border-emerald-500/45 rounded-2xl p-4 space-y-2">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-emerald-400">2. Kiểm chứng sai số tại điểm đo A(19,5; 17,5)</div>
+                  <div class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                    Thay x = 19,5 cm vào công thức lý thuyết:
+                    <span class="font-mono font-bold text-emerald-300">
+                      y<sub>1</sub>(19,5) = 18 −
+                      <span class="inline-flex flex-col items-center align-middle mx-0.5 leading-none text-xs">
+                        <span class="border-b border-emerald-300 px-1 pb-0.5">1152</span>
+                        <span class="px-1 pt-0.5">2209</span>
+                      </span> ≈ 17,48 cm
+                    </span>
+                  </div>
+                  <div class="grid grid-cols-3 gap-2 pt-1 text-center">
+                    <div class="bg-slate-900/90 rounded-xl p-2 border border-slate-700">
+                      <div class="text-[11px] text-slate-400">Độ lệch</div>
+                      <div class="font-mono font-extrabold text-emerald-300 text-sm">0,2 mm</div>
+                    </div>
+                    <div class="bg-slate-900/90 rounded-xl p-2 border border-slate-700">
+                      <div class="text-[11px] text-slate-400">Sai số</div>
+                      <div class="font-mono font-extrabold text-amber-300 text-sm">0,12%</div>
+                    </div>
+                    <div class="bg-slate-900/90 rounded-xl p-2 border border-slate-700">
+                      <div class="text-[11px] text-slate-400">Độ khớp</div>
+                      <div class="font-mono font-extrabold text-emerald-400 text-sm">99,88%</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Khối 3: Bài toán tối ưu Max–Min -->
+                <div class="bg-slate-900/80 border border-sky-500/40 rounded-2xl p-4 space-y-2">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-sky-400">3. Tối ưu khung chữ nhật dưới Vòm 1 (Max–Min)</div>
+                  <div class="text-xs sm:text-sm font-mono text-slate-200">
+                    S(u) = 36u −
+                    <span class="inline-flex flex-col items-center align-middle mx-0.5 leading-none text-xs">
+                      <span class="border-b border-slate-300 px-1 pb-0.5">144</span>
+                      <span class="px-1 pt-0.5">2209</span>
+                    </span>u³ &nbsp;⇒&nbsp; S'(u) = 0 ⇔ u =
+                    <span class="inline-flex flex-col items-center align-middle mx-0.5 leading-none text-xs">
+                      <span class="border-b border-slate-300 px-1 pb-0.5">47√3</span>
+                      <span class="px-1 pt-0.5">6</span>
+                    </span> ≈ 13,57 cm
+                  </div>
+                  <div class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    ⇒ Rộng <strong class="text-white">W = 27,14 cm</strong>, cao <strong class="text-white">h = 12 cm</strong> (= 2/3 chiều cao đỉnh), đạt <strong class="text-amber-300 font-mono">S<sub>max</sub> = 188√3 ≈ 325,63 cm²</strong>.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= TAB 3: BÀI TOÁN MỞ RỘNG CẦU RỒNG PHUN NƯỚC ================= -->
+          <div id="tab-phunnuoc" class="sci-tab-panel hidden space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+              <!-- Hình vẽ SVG trực quan mô phỏng cổ rồng bậc ba + tiếp tuyến chung + tia nước Parabol -->
+              <div class="lg:col-span-7 bg-[#0B1221] border border-slate-700 rounded-2xl p-4 space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <h3 class="text-base sm:text-lg font-extrabold text-sky-400">
+                    Mô phỏng Cầu Rồng Phun nước — Dời gốc O'(0; 0) dưới Đầu rồng (đơn vị: m)
+                  </h3>
+                  <span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-orange-950/80 text-orange-300 border border-orange-500/40">
+                    Chung tiếp tuyến k = 2,25
+                  </span>
+                </div>
+
+                <svg viewBox="0 0 680 350" class="w-full h-auto rounded-xl bg-[#090F1D]" role="img" aria-label="Đồ thị cổ rồng bậc ba f(x), tiếp tuyến chung k = 2,25 tại miệng rồng A'(0; 8,375) và quỹ đạo Parabol tia nước đạt đỉnh 11,2 m rơi xuống B'(6,5; 4)">
+                  <!-- Mặt nước sông Hàn Y = 4 m -->
+                  <rect x="35" y="219" width="615" height="86" fill="rgba(14, 165, 233, 0.16)" />
+                  <line x1="35" y1="219" x2="650" y2="219" stroke="#38BDF8" stroke-width="1.8" stroke-dasharray="7,4" />
+                  <text x="642" y="212" fill="#7DD3FC" font-size="11.5" font-weight="700" text-anchor="end">Mặt nước sông Hàn (Y = 4 m)</text>
+
+                  <!-- Trục tọa độ O'X và O'Y ngay dưới đầu rồng -->
+                  <g stroke="#94A3B8" stroke-width="1.8">
+                    <line x1="35" y1="305" x2="654" y2="305" />
+                    <polygon points="660,305 650,300 650,310" fill="#94A3B8" stroke="none" />
+                    <line x1="155" y1="322" x2="155" y2="22" />
+                    <polygon points="155,16 150,26 160,26" fill="#94A3B8" stroke="none" />
+                  </g>
+                  <text x="652" y="324" fill="#CBD5E1" font-size="12" font-weight="700" text-anchor="end">X (m)</text>
+                  <text x="164" y="26" fill="#CBD5E1" font-size="12" font-weight="700">Y (m)</text>
+
+                  <!-- Đường cong cổ rồng bậc ba f(x) = -x³ + 3x² + 5 trên x ∈ [0; 1,5] -->
+                  <polyline points="53,197.5 73.4,192.3 93.8,178.9 114.2,160.9 134.6,141.8 155,124.9"
+                            fill="none" stroke="rgba(245, 158, 11, 0.3)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+                  <polyline points="53,197.5 73.4,192.3 93.8,178.9 114.2,160.9 134.6,141.8 155,124.9"
+                            fill="none" stroke="#F59E0B" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <text x="72" y="160" fill="#FCD34D" font-size="11" font-weight="700" text-anchor="middle">Cổ rồng bậc ba</text>
+                  <text x="72" y="175" fill="#FDE68A" font-size="10.5" font-weight="600" text-anchor="middle">f(x) = −x³ + 3x² + 5</text>
+
+                  <!-- Đường tiếp tuyến chung nét đứt tại A'(0; 8,375), slope k = 2,25 -->
+                  <line x1="155" y1="124.94" x2="291" y2="28.19" stroke="#FBBF24" stroke-width="2" stroke-dasharray="6,4" />
+                  <rect x="174" y="34" width="128" height="22" rx="6" fill="#0F172A" stroke="#FBBF24" stroke-width="1.2" />
+                  <text x="238" y="49" fill="#FDE68A" font-size="11" font-weight="800" text-anchor="middle">Tiếp tuyến k = 2,25</text>
+
+                  <!-- Quỹ đạo Parabol tia nước chính xác: M(155,124.94) Q(376,-32.28) (597,219) -->
+                  <path d="M 155 124.94 Q 376 -32.28 597 219" fill="none" stroke="rgba(14, 165, 233, 0.28)" stroke-width="12" stroke-linecap="round" />
+                  <path d="M 155 124.94 Q 376 -32.28 597 219" fill="none" stroke="#38BDF8" stroke-width="4" stroke-linecap="round" />
+
+                  <!-- Đường gióng đỉnh cao nhất Xmax = 2,50 m, Ymax = 11,2 m -->
+                  <line x1="325.1" y1="64.43" x2="325.1" y2="305" stroke="#34D399" stroke-width="1.5" stroke-dasharray="5,4" />
+                  <line x1="155" y1="64.43" x2="325.1" y2="64.43" stroke="#34D399" stroke-width="1.5" stroke-dasharray="5,4" />
+                  <line x1="597" y1="219" x2="597" y2="305" stroke="#FB923C" stroke-width="1.3" stroke-dasharray="4,4" />
+
+                  <!-- Các điểm mốc -->
+                  <circle cx="155" cy="305" r="4.5" fill="#94A3B8" stroke="#FFFFFF" stroke-width="1.5" />
+                  <circle cx="155" cy="124.94" r="6" fill="#EA580C" stroke="#FFFFFF" stroke-width="2.2" />
+                  <circle cx="325.1" cy="64.43" r="6.2" fill="#10B981" stroke="#FFFFFF" stroke-width="2.2" />
+                  <circle cx="597" cy="219" r="5.5" fill="#0EA5E9" stroke="#FFFFFF" stroke-width="2" />
+
+                  <!-- Nhãn các điểm -->
+                  <rect x="336" y="42" width="166" height="25" rx="6" fill="#064E3B" stroke="#34D399" stroke-width="1.4" />
+                  <text x="419" y="59" fill="#A7F3D0" font-size="11.5" font-weight="800" text-anchor="middle">Đỉnh cực đại (2,50; 11,2 m)</text>
+
+                  <rect x="12" y="106" width="134" height="24" rx="6" fill="#431407" stroke="#FB923C" stroke-width="1.3" />
+                  <text x="79" y="122" fill="#FED7AA" font-size="11" font-weight="800" text-anchor="middle">Miệng A'(0; 8,375)</text>
+
+                  <rect x="524" y="232" width="128" height="24" rx="6" fill="#0C4A6E" stroke="#38BDF8" stroke-width="1.3" />
+                  <text x="588" y="248" fill="#E0F2FE" font-size="11" font-weight="800" text-anchor="middle">Điểm rơi B'(6,5; 4)</text>
+
+                  <!-- Tọa độ trục -->
+                  <text x="155" y="324" fill="#E2E8F0" font-size="11.5" font-weight="800" text-anchor="middle">O'(0; 0)</text>
+                  <text x="325.1" y="324" fill="#6EE7B7" font-size="11.5" font-weight="800" text-anchor="middle">2,50 m</text>
+                  <text x="597" y="324" fill="#7DD3FC" font-size="11.5" font-weight="700" text-anchor="middle">6,5 m</text>
+                  <text x="147" y="68" fill="#6EE7B7" font-size="11.5" font-weight="800" text-anchor="end">11,2</text>
+                </svg>
+
+                <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-3.5 text-xs sm:text-sm text-slate-300">
+                  <strong class="text-orange-400">Ý nghĩa sư phạm đắt giá:</strong> Bài toán kết nối đồng thời hai trụ cột của Giải tích 12 — <em>ý nghĩa hình học của đạo hàm</em> (chung tiếp tuyến tại miệng rồng đảm bảo tia nước phóng mượt đúng hướng vòi phun) và <em>ứng dụng đạo hàm tìm giá trị lớn nhất</em>.
+                </div>
+              </div>
+
+              <!-- 3 Bước giải chi tiết -->
+              <div class="lg:col-span-5 space-y-4">
+                <div class="bg-slate-900/80 border border-amber-500/40 rounded-2xl p-4 space-y-2">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-amber-400">Bước 1 • Tiếp tuyến cổ rồng &amp; Dời gốc O'</div>
+                  <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    Cổ rồng <span class="font-mono text-white font-bold">f(x) = −x³ + 3x² + 5</span> ⇒ <span class="font-mono text-sky-300">f'(x) = −3x² + 6x</span>. Tại miệng rồng <strong class="font-mono text-amber-300">A(1,5; 8,375)</strong> có hệ số góc tiếp tuyến <strong class="font-mono text-amber-300">k = f'(1,5) = 2,25</strong>.
+                  </p>
+                  <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    Dời gốc <strong class="font-mono text-white">O'(0; 0)</strong> ngay dưới đầu rồng (<span class="font-mono">X = x − 1,5</span>): miệng rồng thành <strong class="font-mono text-orange-300">A'(0; 8,375)</strong>, điểm rơi mặt nước thành <strong class="font-mono text-sky-300">B'(6,5; 4)</strong>.
+                  </p>
+                </div>
+
+                <div class="bg-slate-900/80 border border-sky-500/40 rounded-2xl p-4 space-y-2.5">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-sky-400">Bước 2 • Lập Parabol quỹ đạo tia nước</div>
+                  <p class="text-xs sm:text-sm text-slate-300">
+                    Nhờ chung tiếp tuyến <span class="font-mono text-amber-300">G'(0) = 2,25</span>, đi qua A'(0; 8,375) và B'(6,5; 4):
+                  </p>
+                  <div class="text-sm sm:text-base font-mono font-bold text-sky-300 bg-slate-950/85 border border-slate-700 rounded-xl p-3 overflow-x-auto">
+                    G(X) = −
+                    <span class="inline-flex flex-col items-center align-middle mx-1 leading-none text-xs sm:text-sm">
+                      <span class="border-b border-sky-300 px-1 pb-0.5">76</span>
+                      <span class="px-1 pt-0.5">169</span>
+                    </span>X² + 2,25X + 8,375
+                  </div>
+                  <div class="text-xs text-slate-400 font-mono">
+                    (Hệ trục gốc: g(x) = −(76/169)x² + (2433/676)x + 674/169)
+                  </div>
+                </div>
+
+                <div class="bg-emerald-950/40 border border-emerald-500/45 rounded-2xl p-4 space-y-2">
+                  <div class="text-xs font-extrabold uppercase tracking-wider text-emerald-400">Bước 3 • Đạo hàm tìm độ cao cực đại</div>
+                  <div class="text-xs sm:text-sm font-mono text-slate-200">
+                    G'(X) = −
+                    <span class="inline-flex flex-col items-center align-middle mx-0.5 leading-none text-xs">
+                      <span class="border-b border-slate-200 px-1 pb-0.5">152</span>
+                      <span class="px-1 pt-0.5">169</span>
+                    </span>X + 2,25 = 0 ⇔ X<sub>max</sub> =
+                    <span class="inline-flex flex-col items-center align-middle mx-0.5 leading-none text-xs">
+                      <span class="border-b border-slate-200 px-1 pb-0.5">1521</span>
+                      <span class="px-1 pt-0.5">608</span>
+                    </span> ≈ 2,50 m
+                  </div>
+                  <div class="text-xs text-slate-300">(Tương ứng x ≈ 4,00 m trên hệ trục đề bài gốc)</div>
+                  <div class="pt-1.5 border-t border-emerald-500/30 text-sm sm:text-base font-mono font-extrabold text-emerald-300">
+                    y<sub>max</sub> =
+                    <span class="inline-flex flex-col items-center align-middle mx-1 leading-none text-xs sm:text-sm">
+                      <span class="border-b border-emerald-300 px-1 pb-0.5">54425</span>
+                      <span class="px-1 pt-0.5">4864</span>
+                    </span> ≈ 11,2 m
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= TAB 4: STEM 5 BƯỚC, STEAM & 02 TIẾT HỌC ================= -->
+          <div id="tab-stem" class="sci-tab-panel hidden space-y-8">
+            <!-- 5 bước tiến trình STEM -->
+            <div>
+              <h3 class="text-xl font-extrabold text-amber-400 mb-4">1. Tiến trình Thiết kế Kỹ thuật STEM 5 Bước</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4">
+                  <div class="text-xs font-mono font-extrabold text-amber-400 mb-1">BƯỚC 01</div>
+                  <div class="font-extrabold text-white mb-1">Xác định vấn đề</div>
+                  <p class="text-xs text-slate-300">Đặt câu hỏi thiết kế cầu vòm Parabol chịu lực &amp; tối ưu chiều cao theo dáng Rồng Đà Nẵng.</p>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4">
+                  <div class="text-xs font-mono font-extrabold text-sky-400 mb-1">BƯỚC 02</div>
+                  <div class="font-extrabold text-white mb-1">Thiết kế giải pháp</div>
+                  <p class="text-xs text-slate-300">So sánh cơ học các loại cầu, phác thảo bản vẽ hệ trục Oxy và tính toán công thức Max–Min.</p>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4">
+                  <div class="text-xs font-mono font-extrabold text-orange-400 mb-1">BƯỚC 03</div>
+                  <div class="font-extrabold text-white mb-1">Chế tạo mô hình</div>
+                  <p class="text-xs text-slate-300">Gia công bằng vật liệu tái chế (que gỗ, ống nhựa gân mềm, bìa carton) an toàn, chi phí thấp.</p>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4">
+                  <div class="text-xs font-mono font-extrabold text-emerald-400 mb-1">BƯỚC 04</div>
+                  <div class="font-extrabold text-white mb-1">Thử nghiệm đo đạc</div>
+                  <p class="text-xs text-slate-300">Đo thực tế các tọa độ O, A, B trên mô hình và đối chiếu đồ thị lý thuyết trên GeoGebra.</p>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-4">
+                  <div class="text-xs font-mono font-extrabold text-purple-400 mb-1">BƯỚC 05</div>
+                  <div class="font-extrabold text-white mb-1">Đánh giá cải tiến</div>
+                  <p class="text-xs text-slate-300">Chốt độ khớp 99,88% (sai số 0,2 mm), phân tích nguyên nhân thủ công &amp; đề xuất gia cố.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5 trụ cột STEAM -->
+            <div>
+              <h3 class="text-xl font-extrabold text-sky-400 mb-4">2. Tích hợp Liên môn 5 Trụ cột S – T – E – A – M</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                <div class="bg-sky-950/35 border border-sky-500/40 rounded-2xl p-4">
+                  <div class="text-lg font-black text-sky-400">S — Khoa học</div>
+                  <p class="mt-1 text-xs text-slate-300">Vật lý phân tích lực nén thuần túy trên vòm Parabol và quỹ đạo ném xiên của tia nước.</p>
+                </div>
+                <div class="bg-amber-950/35 border border-amber-500/40 rounded-2xl p-4">
+                  <div class="text-lg font-black text-amber-400">T — Công nghệ</div>
+                  <p class="mt-1 text-xs text-slate-300">Mô phỏng tương tác HTML5, kiểm chứng GeoGebra, sản xuất Video Full HD &amp; Cổng QR mở.</p>
+                </div>
+                <div class="bg-orange-950/35 border border-orange-500/40 rounded-2xl p-4">
+                  <div class="text-lg font-black text-orange-400">E — Kỹ thuật</div>
+                  <p class="mt-1 text-xs text-slate-300">Thiết kế kết cấu mặt cầu phẳng, 3 trụ đỡ, hàng lan can và căn thẳng trục các nhịp vòm.</p>
+                </div>
+                <div class="bg-rose-950/35 border border-rose-500/40 rounded-2xl p-4">
+                  <div class="text-lg font-black text-rose-400">A — Mỹ thuật</div>
+                  <p class="mt-1 text-xs text-slate-300">Tạo hình đầu rồng đỏ–vàng, vảy lửa cam rực rỡ, tiểu cảnh cỏ xanh và mặt sông Hàn.</p>
+                </div>
+                <div class="bg-emerald-950/35 border border-emerald-500/40 rounded-2xl p-4">
+                  <div class="text-lg font-black text-emerald-400">M — Toán học 12</div>
+                  <p class="mt-1 text-xs text-slate-300">Hàm số bậc hai, đạo hàm y', tiếp tuyến chung và bài toán tối ưu hóa Max–Min trên đoạn.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lộ trình 4 Hoạt động Dạy học tích cực gọn trong 02 Tiết -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+              <div class="bg-slate-900/75 border border-slate-700 rounded-2xl p-5 space-y-3">
+                <h4 class="text-lg font-extrabold text-emerald-400">3. Lộ trình Dạy học Tích cực (Gọn trong ≤ 02 Tiết)</h4>
+                <ul class="space-y-2.5 text-sm text-slate-300">
+                  <li class="flex gap-2.5">
+                    <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono font-bold text-xs h-fit mt-0.5">Tiết 1</span>
+                    <span><strong>Hoạt động 1 &amp; 2 (Chuyển giao &amp; Thiết kế):</strong> Nhận nhiệm vụ, ôn kiến thức nền, lập công thức Parabol và duyệt bản vẽ kết cấu.</span>
+                  </li>
+                  <li class="flex gap-2.5">
+                    <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-mono font-bold text-xs h-fit mt-0.5">Ngoài giờ</span>
+                    <span><strong>Chế tạo thực tế:</strong> Các nhóm làm mô hình bằng vật liệu tái chế, đo đạc thực nghiệm và quay video ghi lại quá trình.</span>
+                  </li>
+                  <li class="flex gap-2.5">
+                    <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono font-bold text-xs h-fit mt-0.5">Tiết 2</span>
+                    <span><strong>Hoạt động 3 &amp; 4 (Báo cáo, Phản biện &amp; Mở rộng):</strong> Trình chiếu sản phẩm, kiểm tra sai số, chấm Rubric và giải bài toán mở rộng Cầu Rồng phun nước.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-slate-900/75 border border-slate-700 rounded-2xl p-5 space-y-3">
+                <h4 class="text-lg font-extrabold text-amber-400">4. Kiến thức Nền &amp; Kiến thức Hình thành (GDPT 2018)</h4>
+                <div class="space-y-2.5 text-sm">
+                  <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700">
+                    <div class="font-bold text-sky-300 mb-1">Kiến thức, kỹ năng nền:</div>
+                    <p class="text-slate-300">Đồ thị hàm số bậc hai (Toán 10), phân tích lực cân bằng cơ học (Vật lý), kỹ năng đo kích thước và dựng hệ trục tọa độ.</p>
+                  </div>
+                  <div class="p-3 rounded-xl bg-slate-800/80 border border-emerald-500/35">
+                    <div class="font-bold text-emerald-300 mb-1">Kiến thức, kỹ năng hình thành (Toán 12):</div>
+                    <p class="text-slate-300">Khảo sát chiều biến thiên bằng đạo hàm y', ý nghĩa hình học của tiếp tuyến, giải bài toán GTLN–GTNN trên đoạn và năng lực mô hình hóa thực tiễn.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         PHẦN 5: BẢNG RUBRIC ĐÁNH GIÁ 100 ĐIỂM TƯƠNG TÁC (DÀNH CHO BAN GIÁM KHẢO)
+         ======================================================================= -->
+    <section id="rubric-100" class="py-14 sm:py-20 bg-slate-900/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8">
+          <div class="space-y-2">
+            <span class="inline-block px-3 py-1 rounded-lg bg-orange-500/15 border border-orange-400/35 text-orange-300 text-xs font-extrabold uppercase tracking-wider">
+              Tiêu chí 3 • Minh bạch hóa đánh giá theo thang 100 điểm
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
+              Bảng Rubric Đánh Giá Tương Tác
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-2xl">
+              Hỗ trợ Ban Giám khảo và giáo viên chuyển đổi linh hoạt giữa 2 bộ tiêu chí, kéo thanh trượt chấm thử từng mục và tự động tổng hợp kết quả theo thời gian thực.
+            </p>
+          </div>
+
+          <!-- Bộ nút chuyển đổi 2 chế độ Rubric -->
+          <div class="flex flex-col sm:flex-row gap-2 shrink-0">
+            <button id="btn-mode-school" type="button"
+              class="px-4 py-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all bg-gradient-to-r from-amber-500 to-orange-600 text-slate-950 shadow-lg shadow-orange-600/20">
+              Tiêu chí Hội thi Cấp trường (20–25–20–20–15)
+            </button>
+            <button id="btn-mode-group" type="button"
+              class="px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-600">
+              Rubric Sản phẩm Nhóm (30–25–25–20)
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- Cột danh sách thanh trượt chấm điểm -->
+          <div id="rubric-items-container" class="lg:col-span-8 space-y-4">
+            <!-- Render động bằng JS -->
+          </div>
+
+          <!-- Cột Tổng điểm & Huy hiệu xếp loại Real-time -->
+          <aside class="lg:col-span-4 bg-[#1E293B] border border-slate-700 rounded-3xl p-6 shadow-2xl lg:sticky lg:top-24 space-y-5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-slate-400">Tổng điểm hiện tại</span>
+              <span id="rubric-mode-label" class="text-xs font-mono font-bold text-sky-300 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-700">
+                Thang 100 điểm
+              </span>
+            </div>
+
+            <div class="text-center py-4 bg-slate-900/80 rounded-2xl border border-slate-700/80">
+              <div class="flex items-baseline justify-center gap-1.5">
+                <span id="rubric-total-score" class="text-5xl sm:text-6xl font-black font-mono text-amber-400">95</span>
+                <span class="text-xl font-bold text-slate-400 font-mono">/ 100</span>
+              </div>
+
+              <!-- Thanh tiến độ -->
+              <div class="mt-4 mx-5 h-3 rounded-full bg-slate-800 overflow-hidden">
+                <div id="rubric-progress-bar" class="h-full rounded-full bg-gradient-to-r from-emerald-500 via-amber-400 to-orange-500 transition-all duration-200" style="width: 95%"></div>
+              </div>
+              <div class="mt-2 mx-5 flex justify-between text-[11px] font-mono text-slate-400">
+                <span>0đ</span>
+                <span class="text-emerald-400 font-bold">Mốc Thành phố: 80đ</span>
+                <span>100đ</span>
+              </div>
+            </div>
+
+            <!-- Huy hiệu đánh giá động -->
+            <div id="rubric-badge-box" class="rounded-2xl p-4 border bg-emerald-950/50 border-emerald-500/50 text-emerald-200 space-y-1">
+              <div id="rubric-badge-title" class="text-sm sm:text-base font-extrabold text-emerald-300">
+                ★ Đủ chuẩn xuất sắc xét chọn cấp Thành phố
+              </div>
+              <p id="rubric-badge-desc" class="text-xs sm:text-sm leading-relaxed">
+                Sản phẩm đạt từ 80 điểm trở lên, đáp ứng trọn vẹn tính khoa học Toán 12, tiến trình STEM và khả năng nhân rộng học liệu số.
+              </p>
+            </div>
+
+            <!-- Nút đặt lại mức chuẩn -->
+            <button id="btn-reset-rubric" type="button"
+              class="w-full px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 font-bold text-sm transition-colors flex items-center justify-center gap-2">
+              <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              <span>Đặt lại mức chuẩn</span>
+            </button>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="bg-[#0B1221] border-t border-slate-800 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div class="space-y-1">
+        <div class="text-base font-extrabold text-white">
+          Cổng Học Liệu Số STEM Toán học 12 — Nhóm 1 • Lớp 12A2
+        </div>
+        <p class="text-xs sm:text-sm text-slate-400">
+          Mô hình Cầu Rồng Đà Nẵng • Ứng dụng Hàm số bậc hai &amp; Đạo hàm Max–Min theo Chương trình GDPT 2018.
+        </p>
+      </div>
+      <a href="#trang-chu" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs sm:text-sm font-bold text-amber-300 transition-colors">
+        ↑ Lên đầu trang
+      </a>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       SCRIPT CẤU HÌNH LINK DRIVE, THÀNH VIÊN NHÓM, TAB KHOA HỌC & RUBRIC 100Đ
+       ========================================================================= -->
+  <script>
+    /* =========================================================================
+       1. CẤU HÌNH ĐƯỜNG LINK GOOGLE DRIVE (SIÊU DỄ SỬA — CHỈ CẦN DÁN LINK VÀO ĐÂY)
+       =========================================================================
+       Hướng dẫn cho nhóm 12A2:
+       - Bước 1: Tạo 1 thư mục chung trên Google Drive, bật quyền "Bất kỳ ai có đường liên kết -> Người xem".
+       - Bước 2: Dán đường link thư mục đó vào mục `mainFolder` bên dưới.
+       - Bước 3: Nếu để trống "" ở các mục file lẻ phía dưới, trang web sẽ TỰ ĐỘNG mở thẳng thư mục chung `mainFolder`!
+                 Nếu nhóm có link riêng cho từng file, cứ dán trực tiếp vào đúng dòng tương ứng.
+    */
+    const DRIVE_CONFIG = {
+      mainFolder: "https://drive.google.com/drive/folders/1tvFoWc2WuOreGxhlxRsNE1Zt4FdU1aDW?usp=drive_link",
+      videoPart1: "https://drive.google.com/file/d/1k9uideHO3ZI-TqjVZruHqYgCtDLsYQhI/view?usp=sharing",           // Để trống "" sẽ tự động mở mainFolder
+      videoPart2: "https://drive.google.com/file/d/1wddYZJw42sj9bfqrsGaigpY1UdNdSH45/view?usp=drive_link",           // Để trống "" sẽ tự động mở mainFolder
+      interactiveSim: "https://drive.google.com/file/d/1iFov-sEosE_PnjEsFy5jTINNIw-8AB2W/view?usp=drive_link",       // Link file HTML mô phỏng / thư mục chứa GeoGebra (.ggb)
+      worksheetDocx: "https://docs.google.com/document/d/1Rt1CAa3774cKdPFk65yhuh7x5nMLaFcT/edit?usp=drive_link&ouid=104041483396206463407&rtpof=true&sd=true",        // Link Phiếu học tập số Bài toán Cầu Rồng Phun nước (.docx)
+      lessonPlanRubricDocx: "https://docs.google.com/document/d/195FqCuIilpTi_bqFQZU15IBCKTEC_jIj/edit?usp=drive_link&ouid=104041483396206463407&rtpof=true&sd=true"  // Link Giáo án 02 Tiết (CV 5512) & Bảng Rubric 100đ (.docx)
+    };
+
+    /* =========================================================================
+       2. DANH SÁCH THÀNH VIÊN NHÓM 1 – LỚP 12A2 (CÓ THỂ CHỈNH SỬA NHANH TẠI ĐÂY)
+       ========================================================================= */
+    const TEAM_MEMBERS = [
+      {
+        name: "Trần Hoàng Sơn",
+        badge: "Trưởng nhóm",
+        isLeader: true,
+        roleGroup: "Thiết kế & Kỹ thuật mô hình",
+        task: "Điều phối tổng thể tiến độ, thiết kế kết cấu Cầu Rồng & tích hợp hệ thống học liệu số."
+      },
+      {
+        name: "Lê Phương Linh",
+        badge: "Thành viên",
+        isLeader: false,
+        roleGroup: "Phân tích Toán 12 & Đo đạc",
+        task: "Thiết lập hệ trục Oxy, giải hệ phương trình Parabol Vòm 1 & bảng biến thiên đạo hàm."
+      },
+      {
+        name: "Doãn Trà My",
+        badge: "Thành viên",
+        isLeader: false,
+        roleGroup: "Học liệu số & Dựng Video",
+        task: "Biên tập nội dung học liệu số, kiểm duyệt phụ đề chuẩn lớp học và hình ảnh thành phẩm."
+      },
+      {
+        name: "Võ Hoài An",
+        badge: "Thành viên",
+        isLeader: false,
+        roleGroup: "Báo cáo & Phản biện",
+        task: "Trình bày lý do chọn kết cấu cầu vòm Parabol và thuyết trình phản biện trước Ban Giám khảo."
+      },
+      {
+        name: "Lương Thanh Bình",
+        badge: "Thành viên",
+        isLeader: false,
+        roleGroup: "Thiết kế & Kỹ thuật mô hình",
+        task: "Gia công mặt cầu que gỗ, 3 trụ cầu bìa carton và căn thẳng trục các nhịp vòm tách khoảng."
+      },
+      {
+        name: "Đặng Thanh Ngân",
+        badge: "Thành viên",
+        isLeader: false,
+        roleGroup: "Phân tích Toán 12 & Đo đạc",
+        task: "Đo kiểm sai số thực nghiệm tại A(19,5; 17,5) và giải bài toán khung thông xe Max–Min."
+      },
+      {
+        name: "Nguyễn Lâm Thúy Hằng",
+        badge: "Thành viên",
+        isLeader: false,
+        roleGroup: "Báo cáo & Phản biện",
+        task: "Soạn kịch bản thuyết trình, xây dựng phiếu học tập số và điều phối Hoạt động 4."
+      },
+      {
+        name: "Nguyễn Trung Hậu",
+        badge: "Thành viên",
+        isLeader: false,
+        roleGroup: "Thiết kế & Kỹ thuật mô hình",
+        task: "Uốn ống nhựa gân mềm theo dáng Parabol chuẩn xác và gia cố hệ thống lan can cầu."
+      },
+      {
+        name: "Lê Gia Huy",
+        badge: "Thành viên",
+        isLeader: false,
+        roleGroup: "Học liệu số & Dựng Video",
+        task: "Quay tư liệu chế tác, dựng mô phỏng GeoGebra và triển khai cổng QR trên GitHub Pages."
+      },
+      {
+        name: "Lê Xuân Cường",
+        badge: "Thành viên",
+        isLeader: false,
+        roleGroup: "Phân tích Toán 12 & Đo đạc",
+        task: "Giải bài toán nâng cao Cầu Rồng phun nước (tiếp tuyến chung k = 2,25) và đối chiếu số liệu."
+      },
+      {
+        name: "Trương Gia Như",
+        badge: "Thành viên",
+        isLeader: false,
+        roleGroup: "Học liệu số & Dựng Video",
+        task: "Tạo hình mỹ thuật đầu rồng, vảy lửa cam, tiểu cảnh sông Hàn và kiểm thử giao diện học liệu."
+      }
+    ];
+
+    /* =========================================================================
+       3. DỮ LIỆU 2 CHẾ ĐỘ BẢNG RUBRIC 100 ĐIỂM
+       ========================================================================= */
+    const RUBRIC_MODES = {
+      school: {
+        label: "Hội thi Cấp trường (100đ)",
+        items: [
+          {
+            id: "s1",
+            title: "1. Tính khoa học, chính xác (CT GDPT 2018)",
+            desc: "Đúng mục tiêu môn Toán 12; phân tách rõ kiến thức, kỹ năng nền và kiến thức, kỹ năng hình thành sau chủ đề.",
+            max: 20,
+            defaultVal: 19
+          },
+          {
+            id: "s2",
+            title: "2. Định hướng giáo dục STEM/STEAM",
+            desc: "Đủ 5 bước: Xác định vấn đề – Thiết kế giải pháp – Chế tạo – Thử nghiệm – Đánh giá; có tích hợp liên môn STEAM.",
+            max: 25,
+            defaultVal: 24
+          },
+          {
+            id: "s3",
+            title: "3. Phương pháp, kỹ thuật dạy học tích cực",
+            desc: "Tổ chức đủ 4 hoạt động (Chuyển giao – Thực hiện – Báo cáo thảo luận – Kết luận); có bảng kiểm, rubric đánh giá.",
+            max: 20,
+            defaultVal: 19
+          },
+          {
+            id: "s4",
+            title: "4. Học liệu số & Khả năng chia sẻ mở",
+            desc: "Video Full HD, mô phỏng tương tác HTML/GeoGebra, phiếu học tập số, cổng QR dễ khai thác và chia sẻ rộng rãi.",
+            max: 20,
+            defaultVal: 19
+          },
+          {
+            id: "s5",
+            title: "5. Tính thực tiễn, khả thi và sáng tạo",
+            desc: "Gắn thực tiễn Cầu Rồng Đà Nẵng, vật liệu tái chế phù hợp cơ sở vật chất trường, thời lượng triển khai không quá 02 tiết.",
+            max: 15,
+            defaultVal: 14
+          }
+        ]
+      },
+      group: {
+        label: "Sản phẩm Nhóm (100đ)",
+        items: [
+          {
+            id: "g1",
+            title: "1. Chính xác Toán 12 & Bài toán Phun nước",
+            desc: "Lập đúng phương trình Vòm 1, đạo hàm Max–Min khung thông xe (325,63 cm²) và bài toán tiếp tuyến chung phun nước (11,2 m).",
+            max: 30,
+            defaultVal: 29
+          },
+          {
+            id: "g2",
+            title: "2. Kết cấu mô hình & Thẩm mỹ Cầu Rồng",
+            desc: "Mặt cầu phẳng chắc chắn, các nhịp Parabol tách khoảng cân đối, đầu rồng và vảy lửa sinh động, vật liệu gọn đẹp.",
+            max: 25,
+            defaultVal: 24
+          },
+          {
+            id: "g3",
+            title: "3. Thử nghiệm đo đạc & Đánh giá sai số",
+            desc: "Đo đạc minh bạch, kiểm chứng sai số tại A(19,5; 17,5) chỉ lệch 0,2 mm (khớp 99,88%), đề xuất cải tiến hợp lý.",
+            max: 25,
+            defaultVal: 24
+          },
+          {
+            id: "g4",
+            title: "4. Báo cáo, Phản biện & Học liệu số",
+            desc: "Trả lời thuyết phục lý do chọn cầu Parabol, trình bày tự tin, cung cấp trọn gói video và học liệu số dễ truy cập.",
+            max: 20,
+            defaultVal: 19
+          }
+        ]
+      }
+    };
+
+    /* =========================================================================
+       4. HÀM XỬ LÝ LINK GOOGLE DRIVE & THÔNG BÁO TOAST
+       ========================================================================= */
+    const PLACEHOLDER_TOKEN = "DAN_LINK_THU_MUC_GOOGLE_DRIVE_CUA_BAN_VAO_DAY";
+    let toastTimer = null;
+
+    function isValidLiveUrl(url) {
+      if (!url || typeof url !== "string") return false;
+      const trimmed = url.trim();
+      if (!trimmed.startsWith("http://") && !trimmed.startsWith("https://")) return false;
+      if (trimmed.includes(PLACEHOLDER_TOKEN)) return false;
+      return true;
+    }
+
+    function resolveDriveUrl(key) {
+      const specific = DRIVE_CONFIG[key] ? DRIVE_CONFIG[key].trim() : "";
+      if (specific.length > 0) return specific;
+      return (DRIVE_CONFIG.mainFolder || "").trim();
+    }
+
+    function showToast(title, message) {
+      const container = document.getElementById("toast-container");
+      const titleEl = document.getElementById("toast-title");
+      const msgEl = document.getElementById("toast-msg");
+      if (!container || !titleEl || !msgEl) return;
+
+      titleEl.textContent = title;
+      msgEl.innerHTML = message;
+      container.classList.remove("opacity-0", "translate-y-4");
+      container.classList.add("opacity-100", "translate-y-0");
+
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(hideToast, 5500);
+    }
+
+    function hideToast() {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+      container.classList.add("opacity-0", "translate-y-4");
+      container.classList.remove("opacity-100", "translate-y-0");
+    }
+
+    function initDriveLinks() {
+      const statusBadge = document.getElementById("drive-status-badge");
+      const mainReady = isValidLiveUrl(DRIVE_CONFIG.mainFolder);
+
+      if (statusBadge) {
+        if (mainReady) {
+          statusBadge.innerHTML = `
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span class="text-emerald-300">Kho Google Drive đã kết nối sẵn sàng</span>
+          `;
+        } else {
+          statusBadge.innerHTML = `
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+            <span class="text-amber-300">Chế độ chờ: Dán link Drive vào DRIVE_CONFIG</span>
+          `;
+        }
+      }
+
+      const driveAnchors = document.querySelectorAll("[data-drive-key]");
+      driveAnchors.forEach((anchor) => {
+        const key = anchor.getAttribute("data-drive-key");
+        const resolved = resolveDriveUrl(key);
+
+        if (isValidLiveUrl(resolved)) {
+          anchor.setAttribute("href", resolved);
+          anchor.setAttribute("target", "_blank");
+          anchor.setAttribute("rel", "noopener noreferrer");
+        } else {
+          anchor.setAttribute("href", "#kho-hoc-lieu");
+          anchor.removeAttribute("target");
+          anchor.addEventListener("click", (e) => {
+            e.preventDefault();
+            showToast(
+              "Chưa dán link Google Drive thật",
+              'Hãy mở tệp <code class="font-mono text-sky-300 bg-slate-800 px-1.5 py-0.5 rounded">index.html</code>, tìm khối <code class="font-mono text-amber-300 bg-slate-800 px-1.5 py-0.5 rounded">DRIVE_CONFIG</code> ngay đầu thẻ &lt;script&gt; và dán đường link thư mục Google Drive của nhóm vào mục <code class="font-mono text-emerald-300 bg-slate-800 px-1.5 py-0.5 rounded">mainFolder</code>.'
+            );
+          });
+        }
+      });
+    }
+
+    /* =========================================================================
+       5. RENDER DANH SÁCH THÀNH VIÊN NHÓM 12A2 & BỘ LỌC VAI TRÒ
+       ========================================================================= */
+    const ROLE_COLOR_MAP = {
+      "Thiết kế & Kỹ thuật mô hình": "bg-amber-500/15 text-amber-300 border-amber-400/35",
+      "Phân tích Toán 12 & Đo đạc": "bg-sky-500/15 text-sky-300 border-sky-400/35",
+      "Học liệu số & Dựng Video": "bg-orange-500/15 text-orange-300 border-orange-400/35",
+      "Báo cáo & Phản biện": "bg-emerald-500/15 text-emerald-300 border-emerald-400/35"
+    };
+
+    let activeRoleFilter = "Tất cả";
+
+    function renderRoleFilters() {
+      const container = document.getElementById("role-filters");
+      if (!container) return;
+
+      const roles = ["Tất cả", ...Object.keys(ROLE_COLOR_MAP)];
+      container.innerHTML = roles
+        .map((role) => {
+          const isActive = role === activeRoleFilter;
+          const cls = isActive
+            ? "px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-amber-500 text-slate-950 shadow-md transition-all"
+            : "px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700 transition-all";
+          return `<button type="button" data-role="${role}" class="${cls}">${role}</button>`;
+        })
+        .join("");
+
+      container.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          activeRoleFilter = btn.getAttribute("data-role");
+          renderRoleFilters();
+          renderTeamGrid();
+        });
+      });
+    }
+
+    function getInitials(fullName) {
+      const parts = fullName.trim().split(/\s+/);
+      if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+      return (parts[parts.length - 2][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+
+    function renderTeamGrid() {
+      const grid = document.getElementById("team-grid");
+      if (!grid) return;
+
+      const filtered = activeRoleFilter === "Tất cả"
+        ? TEAM_MEMBERS
+        : TEAM_MEMBERS.filter((m) => m.roleGroup === activeRoleFilter);
+
+      grid.innerHTML = filtered
+        .map((m) => {
+          const roleBadgeCls = ROLE_COLOR_MAP[m.roleGroup] || "bg-slate-700 text-slate-200 border-slate-600";
+          const cardBorder = m.isLeader
+            ? "border-amber-400/70 bg-gradient-to-b from-amber-500/10 to-[#1E293B]"
+            : "border-slate-700/80 bg-[#1E293B]";
+          const avatarCls = m.isLeader
+            ? "bg-gradient-to-br from-amber-400 to-orange-600 text-slate-950"
+            : "bg-slate-800 text-sky-300 border border-slate-600";
+
+          return `
+            <article class="rounded-2xl border ${cardBorder} p-4 shadow-lg flex flex-col justify-between gap-3 hover:-translate-y-0.5 transition-transform">
+              <div class="flex items-start gap-3">
+                <div class="w-11 h-11 rounded-xl ${avatarCls} flex items-center justify-center font-extrabold text-sm shrink-0">
+                  ${getInitials(m.name)}
+                </div>
+                <div class="min-w-0">
+                  <div class="flex flex-wrap items-center gap-1.5">
+                    <h3 class="text-sm sm:text-base font-extrabold text-white truncate">${m.name}</h3>
+                    ${m.isLeader ? '<span class="px-2 py-0.5 rounded-md bg-amber-500 text-slate-950 text-[10px] font-black uppercase">Trưởng nhóm</span>' : ''}
+                  </div>
+                  <div class="mt-1 inline-block px-2.5 py-0.5 rounded-lg border text-[11px] font-bold ${roleBadgeCls}">
+                    ${m.roleGroup}
+                  </div>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-700/60 pt-2.5">
+                ${m.task}
+              </p>
+            </article>
+          `;
+        })
+        .join("");
+    }
+
+    /* =========================================================================
+       6. CHUYỂN TAB CƠ SỞ KHOA HỌC & SỐ LIỆU
+       ========================================================================= */
+    function initScienceTabs() {
+      const buttons = document.querySelectorAll(".sci-tab-btn");
+      const panels = document.querySelectorAll(".sci-tab-panel");
+
+      const activeClasses = [
+        "bg-gradient-to-r", "from-amber-500", "to-orange-600",
+        "text-slate-950", "border-amber-400", "shadow-lg", "shadow-orange-600/20"
+      ];
+      const idleClasses = [
+        "bg-[#1E293B]", "text-slate-200", "border-slate-700",
+        "hover:border-amber-400/50", "hover:text-white"
+      ];
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const targetId = btn.getAttribute("data-tab");
+
+          buttons.forEach((b) => {
+            const isTarget = b === btn;
+            b.setAttribute("aria-selected", isTarget ? "true" : "false");
+            if (isTarget) {
+              b.classList.remove(...idleClasses);
+              b.classList.add(...activeClasses);
+            } else {
+              b.classList.remove(...activeClasses);
+              b.classList.add(...idleClasses);
+            }
+          });
+
+          panels.forEach((p) => {
+            if (p.id === targetId) p.classList.remove("hidden");
+            else p.classList.add("hidden");
+          });
+        });
+      });
+    }
+
+    /* =========================================================================
+       7. BẢNG RUBRIC 100 ĐIỂM TƯƠNG TÁC CHO BAN GIÁM KHẢO
+       ========================================================================= */
+    let currentRubricMode = "school";
+    const rubricScores = {
+      school: {},
+      group: {}
+    };
+
+    function resetRubricScores(modeKey) {
+      RUBRIC_MODES[modeKey].items.forEach((item) => {
+        rubricScores[modeKey][item.id] = item.defaultVal;
+      });
+    }
+
+    function updateRubricSummary() {
+      const mode = RUBRIC_MODES[currentRubricMode];
+      let total = 0;
+      mode.items.forEach((item) => {
+        total += Number(rubricScores[currentRubricMode][item.id] || 0);
+      });
+
+      const scoreEl = document.getElementById("rubric-total-score");
+      const barEl = document.getElementById("rubric-progress-bar");
+      const labelEl = document.getElementById("rubric-mode-label");
+      const badgeBox = document.getElementById("rubric-badge-box");
+      const badgeTitle = document.getElementById("rubric-badge-title");
+      const badgeDesc = document.getElementById("rubric-badge-desc");
+
+      const displayScore = Number.isInteger(total) ? String(total) : total.toFixed(1).replace(".", ",");
+      scoreEl.textContent = displayScore;
+      barEl.style.width = `${Math.min(100, Math.max(0, total))}%`;
+      labelEl.textContent = mode.label;
+
+      if (total >= 80) {
+        badgeBox.className = "rounded-2xl p-4 border bg-emerald-950/55 border-emerald-500/55 text-emerald-100 space-y-1";
+        badgeTitle.className = "text-sm sm:text-base font-extrabold text-emerald-300";
+        badgeTitle.textContent = "★ Đủ chuẩn xuất sắc xét chọn cấp Thành phố";
+        badgeDesc.textContent = "Đạt từ 80 điểm trở lên: Sản phẩm đáp ứng vượt trội yêu cầu CT GDPT 2018, mô hình hóa chuẩn xác và học liệu số có giá trị lan tỏa cao.";
+      } else if (total >= 65) {
+        badgeBox.className = "rounded-2xl p-4 border bg-amber-950/50 border-amber-500/50 text-amber-100 space-y-1";
+        badgeTitle.className = "text-sm sm:text-base font-extrabold text-amber-300";
+        badgeTitle.textContent = "✓ Đạt yêu cầu cấp Trường (Khá)";
+        badgeDesc.textContent = "Hoàn thành tốt các nội dung cơ bản; có thể tăng điểm ở phần mở rộng bài toán đạo hàm hoặc hoàn thiện thêm học liệu số chia sẻ.";
+      } else {
+        badgeBox.className = "rounded-2xl p-4 border bg-rose-950/50 border-rose-500/50 text-rose-100 space-y-1";
+        badgeTitle.className = "text-sm sm:text-base font-extrabold text-rose-300";
+        badgeTitle.textContent = "! Cần bổ sung và hoàn thiện thêm";
+        badgeDesc.textContent = "Chưa đạt ngưỡng xét chọn; cần rà soát lại độ chính xác số liệu, bước thử nghiệm sai số hoặc cấu trúc 4 hoạt động dạy học.";
+      }
+    }
+
+    function renderRubricItems() {
+      const container = document.getElementById("rubric-items-container");
+      if (!container) return;
+
+      const mode = RUBRIC_MODES[currentRubricMode];
+      container.innerHTML = mode.items
+        .map((item) => {
+          const val = rubricScores[currentRubricMode][item.id];
+          const valStr = Number.isInteger(val) ? String(val) : val.toFixed(1).replace(".", ",");
+          return `
+            <div class="bg-[#1E293B] border border-slate-700/80 rounded-2xl p-4 sm:p-5 shadow-lg space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+                <div class="space-y-1">
+                  <h3 class="text-sm sm:text-base font-extrabold text-white">${item.title}</h3>
+                  <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${item.desc}</p>
+                </div>
+                <div class="shrink-0 font-mono text-base sm:text-lg font-black text-amber-300 bg-slate-900 border border-slate-700 px-3 py-1 rounded-xl self-start">
+                  <span id="val-${item.id}">${valStr}</span><span class="text-slate-400 text-sm"> / ${item.max}đ</span>
+                </div>
+              </div>
+              <div class="pt-1">
+                <input type="range" min="0" max="${item.max}" step="0.5" value="${val}"
+                       data-rubric-id="${item.id}" class="rubric-slider" aria-label="${item.title}" />
+              </div>
+            </div>
+          `;
+        })
+        .join("");
+
+      container.querySelectorAll(".rubric-slider").forEach((slider) => {
+        slider.addEventListener("input", (e) => {
+          const id = e.target.getAttribute("data-rubric-id");
+          const num = parseFloat(e.target.value);
+          rubricScores[currentRubricMode][id] = num;
+          const outEl = document.getElementById(`val-${id}`);
+          if (outEl) {
+            outEl.textContent = Number.isInteger(num) ? String(num) : num.toFixed(1).replace(".", ",");
+          }
+          updateRubricSummary();
+        });
+      });
+
+      updateRubricSummary();
+    }
+
+    function initRubric() {
+      resetRubricScores("school");
+      resetRubricScores("group");
+
+      const btnSchool = document.getElementById("btn-mode-school");
+      const btnGroup = document.getElementById("btn-mode-group");
+      const btnReset = document.getElementById("btn-reset-rubric");
+
+      const activeBtnCls = "px-4 py-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all bg-gradient-to-r from-amber-500 to-orange-600 text-slate-950 shadow-lg shadow-orange-600/20";
+      const idleBtnCls = "px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-600";
+
+      btnSchool.addEventListener("click", () => {
+        currentRubricMode = "school";
+        btnSchool.className = activeBtnCls;
+        btnGroup.className = idleBtnCls;
+        renderRubricItems();
+      });
+
+      btnGroup.addEventListener("click", () => {
+        currentRubricMode = "group";
+        btnGroup.className = activeBtnCls;
+        btnSchool.className = idleBtnCls;
+        renderRubricItems();
+      });
+
+      btnReset.addEventListener("click", () => {
+        resetRubricScores(currentRubricMode);
+        renderRubricItems();
+      });
+
+      renderRubricItems();
+    }
+
+    /* =========================================================================
+       8. MENU MOBILE & KHỞI CHẠY TOÀN TRANG
+       ========================================================================= */
+    function initMobileMenu() {
+      const btn = document.getElementById("btn-mobile-menu");
+      const menu = document.getElementById("mobile-menu");
+      if (!btn || !menu) return;
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+
+      menu.querySelectorAll(".mobile-nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden");
+        });
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      try {
+        initMobileMenu();
+        initDriveLinks();
+        renderRoleFilters();
+        renderTeamGrid();
+        initScienceTabs();
+        initRubric();
+
+        const btnCloseToast = document.getElementById("btn-close-toast");
+        if (btnCloseToast) btnCloseToast.addEventListener("click", hideToast);
+      } catch (err) {
+        console.error("Lỗi khởi chạy trang Cổng Học Liệu Số:", err);
+      }
+    });
+  </script>
+</body>
+</html>
