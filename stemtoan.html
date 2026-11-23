@@ -290,24 +290,19 @@
               </div>
               <div>
                 <h3 class="text-xl font-extrabold text-white">
-                  1. Bộ Video Bài giảng STEM (Phần 1 &amp; Phần 2)
+                  1. Video Bài giảng STEM Tổng hợp (Bản Đầy đủ)
                 </h3>
                 <p class="mt-2 text-sm sm:text-base text-slate-300 leading-relaxed">
-                  <strong>Phần 1:</strong> Tổng quan biểu tượng Cầu Rồng, quy trình chế tác thủ công và giới thiệu hàm bậc hai. <strong>Phần 2:</strong> Giải mã lý do chọn Parabol, bộ số liệu đo thật, bài toán Đạo hàm Max–Min và mở rộng Cầu Rồng phun nước.
+                  Video tổng hợp hoàn chỉnh từ tổng quan biểu tượng Cầu Rồng Đà Nẵng, quy trình chế tác mô hình thực tế đến giải mã lý do chọn Parabol, bộ số liệu đo thật, bài toán Đạo hàm Max–Min và mở rộng Cầu Rồng phun nước.
                 </p>
               </div>
             </div>
-            <!-- 2 nút nhanh cho Video Phần 1 và Video Phần 2 -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-700/70">
-              <a href="#kho-hoc-lieu" data-drive-key="videoPart1"
-                 class="px-4 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm text-center transition-colors flex items-center justify-center gap-2">
+            <!-- Nút mở Video Tổng hợp duy nhất -->
+            <div class="pt-2 border-t border-slate-700/70">
+              <a href="#kho-hoc-lieu" data-drive-key="videoFull"
+                 class="w-full px-5 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-slate-950 font-extrabold text-sm text-center transition-colors flex items-center justify-center gap-2">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                <span>Mở Video Phần 1</span>
-              </a>
-              <a href="#kho-hoc-lieu" data-drive-key="videoPart2"
-                 class="px-4 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-extrabold text-sm text-center transition-colors flex items-center justify-center gap-2">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                <span>Mở Video Phần 2</span>
+                <span>Xem Video Tổng hợp trên Google Drive</span>
               </a>
             </div>
           </article>
@@ -426,7 +421,7 @@
               Đội ngũ thực hiện dự án
             </span>
             <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
-              Nhóm 1 – Lớp 12A2 (11 Thành viên)
+              Nhóm 1 – Lớp 12A2 (9 Thành viên)
             </h2>
             <p class="text-slate-300 text-sm sm:text-base max-w-2xl">
               Phân công nhiệm vụ rõ ràng theo 4 nhóm chuyên môn từ thiết kế kết cấu, khảo sát Toán 12, dựng học liệu số đến báo cáo phản biện.
@@ -1101,8 +1096,7 @@
     */
     const DRIVE_CONFIG = {
       mainFolder: "https://drive.google.com/drive/folders/1tvFoWc2WuOreGxhlxRsNE1Zt4FdU1aDW?usp=drive_link",
-      videoPart1: "https://drive.google.com/file/d/1k9uideHO3ZI-TqjVZruHqYgCtDLsYQhI/view?usp=sharing",           // Để trống "" sẽ tự động mở mainFolder
-      videoPart2: "https://drive.google.com/file/d/1wddYZJw42sj9bfqrsGaigpY1UdNdSH45/view?usp=drive_link",           // Để trống "" sẽ tự động mở mainFolder
+      videoFull: "https://drive.google.com/file/d/1l6fNmUV9xQvy3k4-wAMmIaAwq1B_3nwJ/view?usp=drive_link",           // Link Video tổng hợp duy nhất
       interactiveSim: "https://drive.google.com/file/d/1iFov-sEosE_PnjEsFy5jTINNIw-8AB2W/view?usp=drive_link",       // Link file HTML mô phỏng / thư mục chứa GeoGebra (.ggb)
       worksheetDocx: "https://docs.google.com/document/d/1Rt1CAa3774cKdPFk65yhuh7x5nMLaFcT/edit?usp=drive_link&ouid=104041483396206463407&rtpof=true&sd=true",        // Link Phiếu học tập số Bài toán Cầu Rồng Phun nước (.docx)
       lessonPlanRubricDocx: "https://docs.google.com/document/d/195FqCuIilpTi_bqFQZU15IBCKTEC_jIj/edit?usp=drive_link&ouid=104041483396206463407&rtpof=true&sd=true"  // Link Giáo án 02 Tiết (CV 5512) & Bảng Rubric 100đ (.docx)
@@ -1113,81 +1107,67 @@
        ========================================================================= */
     const TEAM_MEMBERS = [
       {
-        name: "Trần Hoàng Sơn",
-        badge: "Trưởng nhóm",
+        name: "Tô Ái My",
+        badge: "Nhóm trưởng",
+        isLeader: true,
+        roleGroup: "Báo cáo & Phản biện",
+        task: "Nhóm trưởng điều phối tổng thể tiến độ dự án, kiểm duyệt nội dung và phụ trách báo cáo phản biện."
+      },
+      {
+        name: "Thái Thanh Nhật",
+        badge: "Nhóm trưởng",
         isLeader: true,
         roleGroup: "Thiết kế & Kỹ thuật mô hình",
-        task: "Điều phối tổng thể tiến độ, thiết kế kết cấu Cầu Rồng & tích hợp hệ thống học liệu số."
+        task: "Nhóm trưởng phụ trách kỹ thuật, thiết kế kết cấu Cầu Rồng và kiểm tra nghiệm thu mô hình thành phẩm."
       },
       {
-        name: "Lê Phương Linh",
-        badge: "Thành viên",
-        isLeader: false,
-        roleGroup: "Phân tích Toán 12 & Đo đạc",
-        task: "Thiết lập hệ trục Oxy, giải hệ phương trình Parabol Vòm 1 & bảng biến thiên đạo hàm."
-      },
-      {
-        name: "Doãn Trà My",
+        name: "Trần Hoàng Sơn",
         badge: "Thành viên",
         isLeader: false,
         roleGroup: "Học liệu số & Dựng Video",
-        task: "Biên tập nội dung học liệu số, kiểm duyệt phụ đề chuẩn lớp học và hình ảnh thành phẩm."
+        task: "Thiết kế, biên tập video bài giảng STEM Full HD và lập trình, triển khai trang web cổng học liệu số."
       },
       {
-        name: "Võ Hoài An",
-        badge: "Thành viên",
-        isLeader: false,
-        roleGroup: "Báo cáo & Phản biện",
-        task: "Trình bày lý do chọn kết cấu cầu vòm Parabol và thuyết trình phản biện trước Ban Giám khảo."
-      },
-      {
-        name: "Lương Thanh Bình",
+        name: "Lê Thái Huy",
         badge: "Thành viên",
         isLeader: false,
         roleGroup: "Thiết kế & Kỹ thuật mô hình",
-        task: "Gia công mặt cầu que gỗ, 3 trụ cầu bìa carton và căn thẳng trục các nhịp vòm tách khoảng."
+        task: "Gia công khung mặt cầu, trụ đỡ, căn chỉnh các nhịp vòm tách khoảng và hỗ trợ đo đạc mô hình."
+      },
+      {
+        name: "Nguyễn Kim Ngân",
+        badge: "Thành viên",
+        isLeader: false,
+        roleGroup: "Phân tích Toán 12 & Đo đạc",
+        task: "Thiết lập hệ trục Oxy đặt gốc tại đầu rồng, lập phương trình Parabol Vòm 1 và bảng biến thiên đạo hàm."
       },
       {
         name: "Đặng Thanh Ngân",
         badge: "Thành viên",
         isLeader: false,
         roleGroup: "Phân tích Toán 12 & Đo đạc",
-        task: "Đo kiểm sai số thực nghiệm tại A(19,5; 17,5) và giải bài toán khung thông xe Max–Min."
+        task: "Đo kiểm sai số thực nghiệm tại A(19,5; 17,5) và giải bài toán tối ưu khung thông xe Max–Min."
       },
       {
         name: "Nguyễn Lâm Thúy Hằng",
         badge: "Thành viên",
         isLeader: false,
         roleGroup: "Báo cáo & Phản biện",
-        task: "Soạn kịch bản thuyết trình, xây dựng phiếu học tập số và điều phối Hoạt động 4."
+        task: "Biên soạn phiếu học tập số, bảng Rubric đánh giá và hỗ trợ thuyết trình Hoạt động 4."
       },
       {
-        name: "Nguyễn Trung Hậu",
-        badge: "Thành viên",
-        isLeader: false,
-        roleGroup: "Thiết kế & Kỹ thuật mô hình",
-        task: "Uốn ống nhựa gân mềm theo dáng Parabol chuẩn xác và gia cố hệ thống lan can cầu."
-      },
-      {
-        name: "Lê Gia Huy",
+        name: "Nguyễn Thị Thanh Vy",
         badge: "Thành viên",
         isLeader: false,
         roleGroup: "Học liệu số & Dựng Video",
-        task: "Quay tư liệu chế tác, dựng mô phỏng GeoGebra và triển khai cổng QR trên GitHub Pages."
+        task: "Hoàn thiện mỹ thuật đầu rồng, vảy lửa cam, tiểu cảnh sông Hàn và hỗ trợ quay tư liệu chế tác."
       },
       {
-        name: "Lê Xuân Cường",
+        name: "Nguyễn Hữu Lộc",
         badge: "Thành viên",
         isLeader: false,
         roleGroup: "Phân tích Toán 12 & Đo đạc",
-        task: "Giải bài toán nâng cao Cầu Rồng phun nước (tiếp tuyến chung k = 2,25) và đối chiếu số liệu."
-      },
-      {
-        name: "Trương Gia Như",
-        badge: "Thành viên",
-        isLeader: false,
-        roleGroup: "Học liệu số & Dựng Video",
-        task: "Tạo hình mỹ thuật đầu rồng, vảy lửa cam, tiểu cảnh sông Hàn và kiểm thử giao diện học liệu."
+        task: "Giải bài toán nâng cao Cầu Rồng phun nước (tiếp tuyến chung k = 2,25) và đối chiếu đồ thị GeoGebra."
       }
     ];
 
@@ -1422,7 +1402,7 @@
                 <div class="min-w-0">
                   <div class="flex flex-wrap items-center gap-1.5">
                     <h3 class="text-sm sm:text-base font-extrabold text-white truncate">${m.name}</h3>
-                    ${m.isLeader ? '<span class="px-2 py-0.5 rounded-md bg-amber-500 text-slate-950 text-[10px] font-black uppercase">Trưởng nhóm</span>' : ''}
+                    ${m.isLeader ? '<span class="px-2 py-0.5 rounded-md bg-amber-500 text-slate-950 text-[10px] font-black uppercase">Nhóm trưởng</span>' : ''}
                   </div>
                   <div class="mt-1 inline-block px-2.5 py-0.5 rounded-lg border text-[11px] font-bold ${roleBadgeCls}">
                     ${m.roleGroup}
